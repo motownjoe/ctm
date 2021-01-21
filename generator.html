@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
+        <title>The Reverbinator: Widget Generator</title>
+
+    </head>
+
+    <body>
+
+        <!-- reverbinator: widget generator -->
+        <div class="container">
+            <h1 class="text-center mb-5 mt-5">The Reverbinator: Widget Generator</h1>
+            <form>
+                <div class="form-group">
+                    <label for="widgetWidth">Set a width (in pixels):</label>
+                    <input class="form-control" id="widgetWidth" type="number" value="400">
+                </div>
+                <div class="form-group">
+                    <label for="themeSelector">Select a theme:</label>
+                    <select class="form-control" id="themeSelector">
+                        <option value="theme-default">Default</option>
+                        <option value="theme-calltrackingmetrics">CallTrackingMetrics</option>
+                        <option value="theme-miami-vice">Miami Vice</option>
+                        <option value="theme-b-side">B-Side</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block" id="generateWidgetCode" type="button">Generate Widget Code</button>
+                </div>
+                <div class="form-group">
+                    <label for="generatedCode">Generated code:</label>
+                    <textarea class="form-control" id="generatedCode" rows="3"></textarea>
+                </div>
+            </form>
+        </div>
+        <!-- /reverbinator: widget generator -->
+
+        <!-- scripts -->
+        <script src="scripts/generator.min.js"></script>
+        <!-- /scripts -->
+
+    </body>
+
+</html>

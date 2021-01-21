@@ -1,0 +1,384 @@
+/**************** variables ****************/
+$widget-background:         #fff;
+
+
+/**************** themes ****************/
+
+// theme: default
+$reverbinator-background:   #767c80;
+$reverbinator-border:       darken($reverbinator-background, 13.5%);
+$reverbinator-hardware:     darken($reverbinator-border, 14%);
+$reverbinator-label:        #cbd2d8;
+$reverbinator-toggle-icon:  #f03a47;
+
+/*
+// theme: calltrackingmetrics
+$reverbinator-background:   #02bdf6;
+$reverbinator-border:       #324a85;
+$reverbinator-hardware:     darken($reverbinator-border, 14%);
+$reverbinator-label:        #fbf5f3;
+$reverbinator-toggle-icon:  #db3069;
+
+// theme: miami vice
+$reverbinator-background:   #31e7d2;
+$reverbinator-border:       darken($reverbinator-background, 13.5%);
+$reverbinator-hardware:     #d9f11f;
+$reverbinator-label:        #f1edf1;
+$reverbinator-toggle-icon:  #ff7eff;
+
+// theme: b-side
+$reverbinator-background:   #09576b;
+$reverbinator-border:       darken($reverbinator-background, 13.5%);
+$reverbinator-hardware:     darken($reverbinator-border, 14%);
+$reverbinator-label:        #cac5a8;
+$reverbinator-toggle-icon:  #b6e736;
+*/
+
+
+/**************** mixins ****************/
+@mixin widget-background {
+    background-color: $widget-background;
+}
+
+@mixin reverbinator-background {
+    background-color: $reverbinator-background;
+}
+
+@mixin reverbinator-border {
+    border: 4px solid $reverbinator-border;
+}
+
+
+/**************** animations ****************/
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/**************** reset ****************/
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+}
+
+
+/**************** reverbinator ****************/
+.reverbinator {
+    color: $reverbinator-hardware;
+    height: 0;
+    padding-top: 62.5%;
+    position: relative;
+}
+
+.reverbinator-guide {
+    @include reverbinator-background;
+    @include reverbinator-border;
+    border-radius: 10px;
+    height: 28%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    bottom: 9%;
+}
+
+.reverbinator-shell {
+    @include reverbinator-background;
+    @include reverbinator-border;
+    border-radius: 10px;
+    bottom: 3.2%;
+    left: 2%;
+    position: absolute;
+    right: 2%;
+    top: 0;
+}
+
+.reverbinator-title {
+    align-items: center;
+    display: flex;
+    height: 10.4%;
+    justify-content: center;
+    left: 10%;
+    position: absolute;
+    right: 10%;
+    top: 1.6%;
+    h1 {
+        font-family: 'Lato', serif;
+        font-size: 4vw;
+    }
+}
+
+.reverbinator-label {
+    background-color: $reverbinator-label;
+    @include reverbinator-border;
+    border-radius: 10px;
+    height: 59%;
+    left: 10%;
+    position: absolute;
+    right: 10%;
+    top: 12.8%;
+    .reverbinator-clip {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    p,
+    audio {
+        height: 32.1428571428571%;
+        left: 0;
+        padding: 4px;
+        position: absolute;
+        width: 100%;
+    }
+    p {
+        font-family: 'Caveat', serif;
+        font-size: 6vw;
+        top: 0;
+        text-align: center;
+    }
+    audio {
+        bottom: 0;
+    }
+}
+
+.reverbinator-reel {
+    @include widget-background;
+    border-radius: 50%;
+    height: 20%;
+    overflow: hidden;
+    position: absolute;
+    top: 32.35%;
+    width: 12.5%;
+}
+
+.reverbinator-reel-l {
+    left: 23%;
+}
+
+.reverbinator-reel-r {
+    right: 23%;
+}
+
+.reverbinator-reel-teeth {
+    box-shadow: 0 0 0 4px $reverbinator-border inset;
+    border-radius: 50%;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    &.recording {
+        animation: spin 4s linear infinite;
+    }
+}
+
+.reverbinator-reel-tooth {
+    background-color: $reverbinator-border;
+    height: 100%;
+    left: 50%;
+    margin-left: -4px;
+    position: absolute;
+    width: 8px;
+}
+
+.reverbinator-reel-tooth-1 {
+    transform: rotate(0deg);
+}
+
+.reverbinator-reel-tooth-2 {
+    transform: rotate(60deg);
+}
+
+.reverbinator-reel-tooth-3 {
+    transform: rotate(120deg);
+}
+
+.reverbinator-reel-teeth-mask {
+    @include widget-background;
+    border-radius: 50%;
+    bottom: 8px;
+    left: 8px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.reverbinator-toggle {
+    align-items: center;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 20%;
+    justify-content: center;
+    left: 23%;
+    overflow: hidden;
+    position: absolute;
+    top: 32.35%;
+    width: 12.5%;
+    &.recording .reverbinator-toggle-icon {
+        border-radius: 6px;
+        height: 50%;
+        width: 50%;
+    }
+}
+
+.reverbinator-toggle-icon {
+    background-color: $reverbinator-toggle-icon;
+    border-radius: 50%;
+    height: 100%;
+    position: absolute;
+    transition: all 0.1s ease 0s;
+    width: 100%;
+}
+
+.reverbinator-window {
+    @include widget-background;
+    @include reverbinator-border;
+    border-radius: 6px;
+    height: 20%;
+    left: 37.5%;
+    overflow: hidden;
+    position: absolute;
+    right: 37.5%;
+    top: 32.35%;
+}
+
+.reverbinator-tape {
+    background-color: $reverbinator-hardware;
+    position: absolute;
+}
+
+.reverbinator-tape-l {
+    border-radius: 0 50% 50% 0;
+    bottom: -30%;
+    left: 0;
+    top: -30%;
+    width: 50%;
+}
+
+.reverbinator-tape-r {
+    border-radius: 50% 0 0 50%;
+    bottom: -10%;
+    right: 0;
+    top: -10%;
+    width: 25%;
+}
+
+.reverbinator-head {
+    @include reverbinator-background;
+    @include reverbinator-border;
+    bottom: 0;
+    height: 25%;
+    position: absolute;
+    width: 50%;
+}
+
+.reverbinator-head-l {
+    border-radius: 10px 0 0 10px;
+    left: 15.5%;
+    transform: skew(-10deg);
+}
+
+.reverbinator-head-r {
+    border-radius: 0 10px 10px 0;
+    border-left: 0 !important;
+    right: 15.5%;
+    transform: skew(10deg);
+}
+
+.reverbinator-head-hole {
+    @include widget-background;
+    @include reverbinator-border;
+    border-radius: 50%;
+    height: 8%;
+    position: absolute;
+    width: 5%;
+}
+
+.reverbinator-head-hole-1 {
+    bottom: 3.2%;
+    left: 23.5%;
+}
+
+.reverbinator-head-hole-2 {
+    bottom: 4.8%;
+    left: 35.5%;
+}
+
+.reverbinator-head-hole-3 {
+    bottom: 4.8%;
+    right: 35.5%;
+}
+
+.reverbinator-head-hole-4 {
+    bottom: 3.2%;
+    right: 23.5%;
+}
+
+.reverbinator-screw {
+    background-color: $reverbinator-hardware;
+    @include reverbinator-border;
+    border-radius: 50%;
+    height: 8%;
+    position: absolute;
+    width: 5%;
+}
+
+.reverbinator-screw-tl {
+    left: 4%;
+    top: 3.2%;
+}
+
+.reverbinator-screw-tr {
+    right: 4%;
+    top: 3.2%;
+}
+
+.reverbinator-screw-br {
+    bottom: 6.4%;
+    left: 4%;
+}
+
+.reverbinator-screw-bm {
+    bottom: 13.8%;
+    left: 47.5%;
+}
+
+.reverbinator-screw-bl {
+    bottom: 6.4%;
+    right: 4%;
+}
+
+.reverbinator-unsupported {
+    align-items: center;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    p {
+        display: block;
+        font-family: 'Lato', serif;
+        font-size: 6vw;
+        text-align: center;
+    }
+}
+
+.reverbinator-error {
+    * {
+        display: none;
+    }
+    .reverbinator-unsupported {
+        display: flex;
+    }
+}
